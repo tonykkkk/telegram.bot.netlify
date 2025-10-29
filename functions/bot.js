@@ -11,7 +11,7 @@ bot.start((ctx) => {
 bot.on("document", (ctx) => {
   // return ctx.reply(`Tnx for file`);
   const { file_id: fileId } = ctx.update.message.document;
-  console.log(file_id);
+  console.log(fileId);
   const fileUrl = ctx.telegram.getFileLink(fileId);
   console.log(fileUrl);
   const response = axios.get(fileUrl);
