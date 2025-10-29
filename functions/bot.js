@@ -1,5 +1,6 @@
 const Telegraf = require("telegraf");
 const startAction = require("./actions/start");
+const axios = require("axios");
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -8,7 +9,11 @@ bot.start((ctx) => {
 });
 
 bot.on("document", (ctx) => {
-  return ctx.reply(`Tnx for file`);
+  // return ctx.reply(`Tnx for file`);
+  const { file_id: fileId } = ctx.update.message.document;
+  const fileUrl = ctx.telegram.getFileLink(fileId);
+  const response = axios.get(fileUrl);
+  ctx.reply("I read the file for you! The contents were:\n\n" + response.data);
 });
 
 bot.on("text", (ctx) => {
