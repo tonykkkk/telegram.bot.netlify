@@ -8,7 +8,7 @@ module.exports = async (ctx) => {
   }
 
   try {
-    return ctx.reply(`test function`);
+    return ctx.reply(`Привет! Пришли мне файлы`);
   } catch (e) {
     return ctx.reply(`Error occured`);
   }

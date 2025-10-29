@@ -20,7 +20,7 @@ bot.on("document", async (ctx) => {
     const response = await axios.get(fileUrl);
     await ctx.reply(
       "I read the file for you! The contents were:\n\n" +
-        response.data.substring(0, 100)
+        JSON.stringify(response.data).substring(0, 100)
     );
   } catch (error) {
     console.error("Error processing file:", error);
