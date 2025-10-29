@@ -7,6 +7,17 @@ bot.start((ctx) => {
   return startAction(ctx);
 });
 
+bot.on(message("text"), async (ctx) => {
+  // Explicit usage
+  await ctx.telegram.sendMessage(
+    ctx.message.chat.id,
+    `Hello ${ctx.state.role}, send me a file`
+  );
+
+  // Using context shortcut
+  await ctx.reply(`Hello ${ctx.state.role}`);
+});
+
 exports.handler = async (event) => {
   try {
     await bot.handleUpdate(JSON.parse(event.body));
