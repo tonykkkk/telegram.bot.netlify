@@ -7,11 +7,11 @@ bot.start((ctx) => {
   return startAction(ctx);
 });
 
-bot.on(message("document"), (ctx) => {
+bot.on("document", (ctx) => {
   return ctx.reply(`Tnx for file`);
 });
 
-bot.on(message("text"), (ctx) => {
+bot.on("text", (ctx) => {
   return ctx.reply(`send me file`);
 });
 
