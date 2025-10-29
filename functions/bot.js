@@ -8,17 +8,23 @@ bot.start((ctx) => {
   return startAction(ctx);
 });
 
-bot.on("document", (ctx) => {
-  // return ctx.reply(`Tnx for file`);
-  const { file_id: fileId } = ctx.update.message.document;
-  console.log(fileId);
-  ctx.telegram.getFileLink(fileId).then((fileUrl) => {
+bot.on("document", async (ctx) => {
+  try {
+    // return ctx.reply(`Tnx for file`);
+    const { file_id: fileId } = ctx.update.message.document;
+    console.log("File ID:", fileId);
+
+    const fileUrl = await ctx.telegram.getFileLink(fileId);
     console.log(fileUrl);
-    const response = axios.get(fileUrl);
-    ctx.reply(
+
+    const response = await axios.get(fileUrl);
+    await ctx.reply(
       "I read the file for you! The contents were:\n\n" + response.data
     );
-  });
+  } catch (error) {
+    console.error("Error processing file:", error);
+    await ctx.reply("Sorry, there was an error processing your file.");
+  }
 });
 
 bot.on("text", (ctx) => {
