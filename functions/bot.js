@@ -12,10 +12,13 @@ bot.on("document", (ctx) => {
   // return ctx.reply(`Tnx for file`);
   const { file_id: fileId } = ctx.update.message.document;
   console.log(fileId);
-  const fileUrl = ctx.telegram.getFileLink(fileId);
-  console.log(fileUrl);
-  const response = axios.get(fileUrl);
-  ctx.reply("I read the file for you! The contents were:\n\n" + response.data);
+  ctx.telegram.getFileLink(fileId).then((fileUrl) => {
+    console.log(fileUrl);
+    const response = axios.get(fileUrl);
+    ctx.reply(
+      "I read the file for you! The contents were:\n\n" + response.data
+    );
+  });
 });
 
 bot.on("text", (ctx) => {
