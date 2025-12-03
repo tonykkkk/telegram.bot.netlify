@@ -28,7 +28,7 @@ bot.on("document", async (ctx) => {
 
     console.log("✅ ZIP-файл успешно прочитан");
 
-    const result = await extractFollowersAndFollowing(response.data);
+    const result = await extractFollowersAndFollowing(zipBuffer);
 
     ctx.reply(`✅ Данные успешно извлечены:`);
     ctx.reply(`   - Подписчики: ${result.followers?.length || 0} записей`);
