@@ -3,6 +3,7 @@ const startAction = require("./actions/start");
 const axios = require("axios");
 const {
   handleZipFileUpload,
+  downloadZipFromUrl,
   extractFollowersAndFollowing,
   review,
 } = require("./actions/instagramAnalyzer");
@@ -21,8 +22,8 @@ bot.on("document", async (ctx) => {
 
     const fileUrl = await ctx.telegram.getFileLink(fileId);
     console.log(fileUrl);
-
-    const response = await axios.get(fileUrl);
+    zipBuffer = await downloadZipFromUrl(fileUrl);
+    //const response = await axios.get(fileUrl);
     await ctx.reply("Начинаю анализ подписчиков...");
 
     console.log("✅ ZIP-файл успешно прочитан");

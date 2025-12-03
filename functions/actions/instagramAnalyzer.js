@@ -1,6 +1,118 @@
 // instagramAnalyzer.js
 const JSZip = require("jszip");
 const fs = require("fs").promises;
+const axios = require("axios"); // Добавляем axios
+const path = require("path");
+
+/**
+ * Основная функция обработки - поддерживает и локальные файлы и URL
+ */
+async function analyzeInstagramData(input) {
+  try {
+    console.log("Начинаю обработку...");
+
+    let zipBuffer;
+
+    // Определяем тип входа: URL или локальный путь
+    if (isValidUrl(input)) {
+      console.log(`Загружаю файл по URL: ${input}`);
+      zipBuffer = await downloadZipFromUrl(input);
+    } else if (typeof input === "string" && input.endsWith(".zip")) {
+      // Локальный файл
+      console.log(`Читаю локальный файл: ${input}`);
+      zipBuffer = await fs.readFile(input);
+    } else if (Buffer.isBuffer(input)) {
+      // Уже буфер
+      console.log("Использую предоставленный буфер");
+      zipBuffer = input;
+    } else {
+      throw new Error(
+        "Некорректный входной параметр. Должен быть: URL, путь к файлу или Buffer"
+      );
+    }
+
+    // Извлекаем данные
+    const result = await extractFollowersAndFollowing(zipBuffer);
+
+    console.log("Данные успешно извлечены!");
+    console.log("Статистика:", result.stats);
+
+    // Анализируем
+    const nonMutual = review(result.followers, result.following);
+
+    return {
+      nonMutualFollowers: nonMutual,
+      stats: {
+        ...result.stats,
+        nonMutualCount: nonMutual.length,
+        mutualPercentage:
+          result.following.length > 0
+            ? (
+                ((result.following.length - nonMutual.length) /
+                  result.following.length) *
+                100
+              ).toFixed(1)
+            : 0,
+      },
+      followers: result.followers,
+      following: result.following,
+    };
+  } catch (error) {
+    console.error("Ошибка при анализе:", error.message);
+    throw error;
+  }
+}
+
+/**
+ * Загрузка ZIP файла по URL
+ */
+async function downloadZipFromUrl(url) {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: url,
+      responseType: "arraybuffer", // Важно: получаем бинарные данные
+      timeout: 30000, // 30 секунд таймаут
+      maxContentLength: 50 * 1024 * 1024, // 50MB максимум
+      headers: {
+        "User-Agent": "Instagram-Analyzer/1.0",
+      },
+    });
+
+    console.log(
+      `Файл загружен. Размер: ${(response.data.length / 1024 / 1024).toFixed(
+        2
+      )} MB`
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка загрузки файла:", error.message);
+
+    if (error.response) {
+      console.error(`HTTP статус: ${error.response.status}`);
+      throw new Error(
+        `Не удалось загрузить файл. HTTP статус: ${error.response.status}`
+      );
+    } else if (error.request) {
+      throw new Error("Не удалось получить ответ от сервера");
+    } else {
+      throw new Error(`Ошибка при запросе: ${error.message}`);
+    }
+  }
+}
+
+/**
+ * Проверка валидности URL
+ */
+function isValidUrl(string) {
+  try {
+    const url = new URL(string);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
+}
 
 async function handleZipFileUpload(filePath) {
   if (!filePath) {
@@ -194,4 +306,5 @@ module.exports = {
   review,
   normalizeFollowersData,
   normalizeFollowingData,
+  downloadZipFromUrl,
 };
