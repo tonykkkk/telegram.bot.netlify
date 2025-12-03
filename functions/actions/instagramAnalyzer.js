@@ -230,7 +230,7 @@ function normalizeFollowersData(data) {
       if (item.string_list_data && Array.isArray(item.string_list_data)) {
         return {
           username: item.string_list_data[0]?.value || "",
-          href: item.string_list_data[0]?.href || "",
+          href: item.string_list_data[0]?.href || "123",
         };
       }
       return { username: "", href: "" };
@@ -239,7 +239,7 @@ function normalizeFollowersData(data) {
     // Другой возможный формат
     return data.relationships_followers.map((item) => ({
       username: item.title || "",
-      href: item.string_list_data?.[0]?.value || "",
+      href: item.string_list_data?.[0]?.value || "123",
     }));
   }
 
@@ -254,7 +254,7 @@ function normalizeFollowingData(data) {
   ) {
     return data.relationships_following.map((item) => ({
       username: item.title || "",
-      href: item.string_list_data?.[0]?.value || "",
+      href: item.string_list_data?.[0]?.href || "",
     }));
   }
 

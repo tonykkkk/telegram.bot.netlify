@@ -138,7 +138,7 @@ async function testAnalysis(extractedData) {
         100
       ).toFixed(1);
       console.log(`   - Процент не взаимных: ${percentage}%`);
-
+      console.log(nonMutualFollowers);
       // Сохраняем полный список не взаимных подписок
       const outputPath = path.join(__dirname, "non_mutual_following.json");
       await fs.writeFile(
