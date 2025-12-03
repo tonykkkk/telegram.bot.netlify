@@ -6,6 +6,7 @@ const {
   extractFollowersAndFollowing,
   review,
 } = require("./functions/actions/instagramAnalyzer");
+const { generateReports } = require("./functions/actions/createHtml");
 
 // Конфигурация теста
 const TEST_ZIP_PATH = path.join(__dirname, "test.zip");
@@ -125,7 +126,7 @@ async function testAnalysis(extractedData) {
       extractedData.followers,
       extractedData.following
     );
-
+    await generateReports(nonMutualFollowers);
     console.log(`✅ Анализ завершен:`);
     console.log(`   - Всего подписчиков: ${extractedData.followers.length}`);
     console.log(`   - Всего подписок: ${extractedData.following.length}`);

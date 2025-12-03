@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список не взаимных подписок (142)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .user-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-item:hover {
+            background: #f5f5f5;
+        }
+        .profile-link {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .profile-link:hover {
+            background: #764ba2;
+        }
+        .counter {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Не взаимные подписки <span class="counter">142</span></h1>
+    <p>Дата: 03.12.2025, 15:39:28</p>
+    <div style="margin: 20px 0;">
+        <button onclick="copyAllLinks()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Копировать все ссылки
+        </button>
+    </div>
+    
+        <div class="user-item">
+            <span><strong>1.</strong> @angeliina_rokes</span>
+            <a href="https://www.instagram.com/_u/angeliina_rokes" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>2.</strong> @anna_boldyy</span>
+            <a href="https://www.instagram.com/_u/anna_boldyy" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>3.</strong> @books_lisss</span>
+            <a href="https://www.instagram.com/_u/books_lisss" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>4.</strong> @romanova___mari</span>
+            <a href="https://www.instagram.com/_u/romanova___mari" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>5.</strong> @khamidovanz</span>
+            <a href="https://www.instagram.com/_u/khamidovanz" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>6.</strong> @angelliice</span>
+            <a href="https://www.instagram.com/_u/angelliice" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>7.</strong> @aly.vinaaa</span>
+            <a href="https://www.instagram.com/_u/aly.vinaaa" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>8.</strong> @quin.star21</span>
+            <a href="https://www.instagram.com/_u/quin.star21" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>9.</strong> @ezik_mari</span>
+            <a href="https://www.instagram.com/_u/ezik_mari" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>10.</strong> @marrgulichka</span>
+            <a href="https://www.instagram.com/_u/marrgulichka" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>11.</strong> @valeriya_kek_art</span>
+            <a href="https://www.instagram.com/_u/valeriya_kek_art" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>12.</strong> @yan4ik_baldina</span>
+            <a href="https://www.instagram.com/_u/yan4ik_baldina" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>13.</strong> @irishadovgaliuk</span>
+            <a href="https://www.instagram.com/_u/irishadovgaliuk" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>14.</strong> @polyakova_ann_</span>
+            <a href="https://www.instagram.com/_u/polyakova_ann_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>15.</strong> @nails_bro_spb</span>
+            <a href="https://www.instagram.com/_u/nails_bro_spb" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>16.</strong> @aniuta9596</span>
+            <a href="https://www.instagram.com/_u/aniuta9596" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>17.</strong> @shkavrova_</span>
+            <a href="https://www.instagram.com/_u/shkavrova_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>18.</strong> @veronika__universe</span>
+            <a href="https://www.instagram.com/_u/veronika__universe" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>19.</strong> @teterina0811</span>
+            <a href="https://www.instagram.com/_u/teterina0811" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>20.</strong> @lenormanistka</span>
+            <a href="https://www.instagram.com/_u/lenormanistka" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>21.</strong> @keratina_alevtina</span>
+            <a href="https://www.instagram.com/_u/keratina_alevtina" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>22.</strong> @rashitova.ju</span>
+            <a href="https://www.instagram.com/_u/rashitova.ju" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>23.</strong> @aisylu__photo</span>
+            <a href="https://www.instagram.com/_u/aisylu__photo" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>24.</strong> @dszhka</span>
+            <a href="https://www.instagram.com/_u/dszhka" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>25.</strong> @nadiivleva</span>
+            <a href="https://www.instagram.com/_u/nadiivleva" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>26.</strong> @photo_lilith_</span>
+            <a href="https://www.instagram.com/_u/photo_lilith_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>27.</strong> @lenaa.sergeevna</span>
+            <a href="https://www.instagram.com/_u/lenaa.sergeevna" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>28.</strong> @sidelnikova91</span>
+            <a href="https://www.instagram.com/_u/sidelnikova91" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>29.</strong> @alieva261023</span>
+            <a href="https://www.instagram.com/_u/alieva261023" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>30.</strong> @zvani_zavtrak</span>
+            <a href="https://www.instagram.com/_u/zvani_zavtrak" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>31.</strong> @julia2604ru</span>
+            <a href="https://www.instagram.com/_u/julia2604ru" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>32.</strong> @nastya_mirari</span>
+            <a href="https://www.instagram.com/_u/nastya_mirari" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>33.</strong> @ekaterina_karanadze</span>
+            <a href="https://www.instagram.com/_u/ekaterina_karanadze" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>34.</strong> @chernoskutovatb</span>
+            <a href="https://www.instagram.com/_u/chernoskutovatb" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>35.</strong> @miiamur01</span>
+            <a href="https://www.instagram.com/_u/miiamur01" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>36.</strong> @lina_.vak</span>
+            <a href="https://www.instagram.com/_u/lina_.vak" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>37.</strong> @dasha_vavi_lova</span>
+            <a href="https://www.instagram.com/_u/dasha_vavi_lova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>38.</strong> @gveraone</span>
+            <a href="https://www.instagram.com/_u/gveraone" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>39.</strong> @nastya___stylist</span>
+            <a href="https://www.instagram.com/_u/nastya___stylist" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>40.</strong> @shrbn_f</span>
+            <a href="https://www.instagram.com/_u/shrbn_f" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>41.</strong> @angelinnix</span>
+            <a href="https://www.instagram.com/_u/angelinnix" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>42.</strong> @pavllorya.desserts</span>
+            <a href="https://www.instagram.com/_u/pavllorya.desserts" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>43.</strong> @tam.000001</span>
+            <a href="https://www.instagram.com/_u/tam.000001" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>44.</strong> @_s_kseniya_v</span>
+            <a href="https://www.instagram.com/_u/_s_kseniya_v" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>45.</strong> @anna__lovemakeup</span>
+            <a href="https://www.instagram.com/_u/anna__lovemakeup" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>46.</strong> @darya.bersenevva</span>
+            <a href="https://www.instagram.com/_u/darya.bersenevva" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>47.</strong> @sivakova.1317</span>
+            <a href="https://www.instagram.com/_u/sivakova.1317" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>48.</strong> @djulies.blog</span>
+            <a href="https://www.instagram.com/_u/djulies.blog" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>49.</strong> @gubina.ss</span>
+            <a href="https://www.instagram.com/_u/gubina.ss" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>50.</strong> @dominika_pavlovna</span>
+            <a href="https://www.instagram.com/_u/dominika_pavlovna" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>51.</strong> @karinessa__2206</span>
+            <a href="https://www.instagram.com/_u/karinessa__2206" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>52.</strong> @men_vipshoping_26</span>
+            <a href="https://www.instagram.com/_u/men_vipshoping_26" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>53.</strong> @danniiiiele</span>
+            <a href="https://www.instagram.com/_u/danniiiiele" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>54.</strong> @strangervinyyl</span>
+            <a href="https://www.instagram.com/_u/strangervinyyl" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>55.</strong> @dasha_lisovenko</span>
+            <a href="https://www.instagram.com/_u/dasha_lisovenko" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>56.</strong> @yuli.and.slav</span>
+            <a href="https://www.instagram.com/_u/yuli.and.slav" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>57.</strong> @ai_gromova</span>
+            <a href="https://www.instagram.com/_u/ai_gromova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>58.</strong> @nelmua_</span>
+            <a href="https://www.instagram.com/_u/nelmua_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>59.</strong> @vvv.emelyanova</span>
+            <a href="https://www.instagram.com/_u/vvv.emelyanova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>60.</strong> @n.y.u.t.s</span>
+            <a href="https://www.instagram.com/_u/n.y.u.t.s" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>61.</strong> @belaayyaa</span>
+            <a href="https://www.instagram.com/_u/belaayyaa" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>62.</strong> @lenara.wow</span>
+            <a href="https://www.instagram.com/_u/lenara.wow" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>63.</strong> @levnkova</span>
+            <a href="https://www.instagram.com/_u/levnkova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>64.</strong> @mari_korotovskih</span>
+            <a href="https://www.instagram.com/_u/mari_korotovskih" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>65.</strong> @yulia_sivaya</span>
+            <a href="https://www.instagram.com/_u/yulia_sivaya" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>66.</strong> @elstolba</span>
+            <a href="https://www.instagram.com/_u/elstolba" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>67.</strong> @_lidos__</span>
+            <a href="https://www.instagram.com/_u/_lidos__" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>68.</strong> @smirnovshina00</span>
+            <a href="https://www.instagram.com/_u/smirnovshina00" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>69.</strong> @plusekontent</span>
+            <a href="https://www.instagram.com/_u/plusekontent" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>70.</strong> @melomanka_mi</span>
+            <a href="https://www.instagram.com/_u/melomanka_mi" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>71.</strong> @dari_pole_dance</span>
+            <a href="https://www.instagram.com/_u/dari_pole_dance" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>72.</strong> @nk_kochetkova</span>
+            <a href="https://www.instagram.com/_u/nk_kochetkova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>73.</strong> @galinaoffix</span>
+            <a href="https://www.instagram.com/_u/galinaoffix" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>74.</strong> @reviving_rose2304</span>
+            <a href="https://www.instagram.com/_u/reviving_rose2304" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>75.</strong> @koliiis_s</span>
+            <a href="https://www.instagram.com/_u/koliiis_s" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>76.</strong> @daria_dalakyan999</span>
+            <a href="https://www.instagram.com/_u/daria_dalakyan999" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>77.</strong> @wow_decor_krd</span>
+            <a href="https://www.instagram.com/_u/wow_decor_krd" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>78.</strong> @avv.roni</span>
+            <a href="https://www.instagram.com/_u/avv.roni" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>79.</strong> @pronko.psy</span>
+            <a href="https://www.instagram.com/_u/pronko.psy" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>80.</strong> @keti_mmm</span>
+            <a href="https://www.instagram.com/_u/keti_mmm" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>81.</strong> @alikova_permanent</span>
+            <a href="https://www.instagram.com/_u/alikova_permanent" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>82.</strong> @svetlana_dutchak_</span>
+            <a href="https://www.instagram.com/_u/svetlana_dutchak_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>83.</strong> @tvoytarologiny</span>
+            <a href="https://www.instagram.com/_u/tvoytarologiny" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>84.</strong> @diya__dii</span>
+            <a href="https://www.instagram.com/_u/diya__dii" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>85.</strong> @elena_k07</span>
+            <a href="https://www.instagram.com/_u/elena_k07" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>86.</strong> @sanechka.s_</span>
+            <a href="https://www.instagram.com/_u/sanechka.s_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>87.</strong> @yuliaa_kn</span>
+            <a href="https://www.instagram.com/_u/yuliaa_kn" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>88.</strong> @regina_kovrigina</span>
+            <a href="https://www.instagram.com/_u/regina_kovrigina" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>89.</strong> @ayshe_ka777</span>
+            <a href="https://www.instagram.com/_u/ayshe_ka777" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>90.</strong> @krisblog_i</span>
+            <a href="https://www.instagram.com/_u/krisblog_i" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>91.</strong> @anastasiabrotko</span>
+            <a href="https://www.instagram.com/_u/anastasiabrotko" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>92.</strong> @cool_3tarot</span>
+            <a href="https://www.instagram.com/_u/cool_3tarot" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>93.</strong> @polia.belia</span>
+            <a href="https://www.instagram.com/_u/polia.belia" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>94.</strong> @eliavino</span>
+            <a href="https://www.instagram.com/_u/eliavino" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>95.</strong> @psihologiya.deneg</span>
+            <a href="https://www.instagram.com/_u/psihologiya.deneg" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>96.</strong> @svi.kk</span>
+            <a href="https://www.instagram.com/_u/svi.kk" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>97.</strong> @alineesssa</span>
+            <a href="https://www.instagram.com/_u/alineesssa" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>98.</strong> @viuggova</span>
+            <a href="https://www.instagram.com/_u/viuggova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>99.</strong> @lera._brows</span>
+            <a href="https://www.instagram.com/_u/lera._brows" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>100.</strong> @slav_a2614</span>
+            <a href="https://www.instagram.com/_u/slav_a2614" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>101.</strong> @riadeair</span>
+            <a href="https://www.instagram.com/_u/riadeair" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>102.</strong> @__frolova.d__</span>
+            <a href="https://www.instagram.com/_u/__frolova.d__" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>103.</strong> @poypae.e</span>
+            <a href="https://www.instagram.com/_u/poypae.e" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>104.</strong> @nosovpartner</span>
+            <a href="https://www.instagram.com/_u/nosovpartner" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>105.</strong> @olesia.pohabova</span>
+            <a href="https://www.instagram.com/_u/olesia.pohabova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>106.</strong> @make_me_cry001</span>
+            <a href="https://www.instagram.com/_u/make_me_cry001" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>107.</strong> @stasy.taro_</span>
+            <a href="https://www.instagram.com/_u/stasy.taro_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>108.</strong> @fotomusicbox</span>
+            <a href="https://www.instagram.com/_u/fotomusicbox" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>109.</strong> @german_barukh</span>
+            <a href="https://www.instagram.com/_u/german_barukh" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>110.</strong> @_mitroshaa_</span>
+            <a href="https://www.instagram.com/_u/_mitroshaa_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>111.</strong> @veralilas_game</span>
+            <a href="https://www.instagram.com/_u/veralilas_game" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>112.</strong> @mednaya_babochka</span>
+            <a href="https://www.instagram.com/_u/mednaya_babochka" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>113.</strong> @amaliya12341</span>
+            <a href="https://www.instagram.com/_u/amaliya12341" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>114.</strong> @katea.sinitsa</span>
+            <a href="https://www.instagram.com/_u/katea.sinitsa" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>115.</strong> @11alissaaa11</span>
+            <a href="https://www.instagram.com/_u/11alissaaa11" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>116.</strong> @la_room_rnd</span>
+            <a href="https://www.instagram.com/_u/la_room_rnd" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>117.</strong> @patimat.izaeva</span>
+            <a href="https://www.instagram.com/_u/patimat.izaeva" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>118.</strong> @tarolog.dar</span>
+            <a href="https://www.instagram.com/_u/tarolog.dar" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>119.</strong> @ismillona</span>
+            <a href="https://www.instagram.com/_u/ismillona" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>120.</strong> @artukova_28__</span>
+            <a href="https://www.instagram.com/_u/artukova_28__" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>121.</strong> @prom.ts6</span>
+            <a href="https://www.instagram.com/_u/prom.ts6" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>122.</strong> @letta_22.12</span>
+            <a href="https://www.instagram.com/_u/letta_22.12" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>123.</strong> @pershina13</span>
+            <a href="https://www.instagram.com/_u/pershina13" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>124.</strong> @fitmamaspain</span>
+            <a href="https://www.instagram.com/_u/fitmamaspain" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>125.</strong> @yavorskaya_v_</span>
+            <a href="https://www.instagram.com/_u/yavorskaya_v_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>126.</strong> @matrix22mari</span>
+            <a href="https://www.instagram.com/_u/matrix22mari" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>127.</strong> @_little__lark__</span>
+            <a href="https://www.instagram.com/_u/_little__lark__" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>128.</strong> @privalochka_m</span>
+            <a href="https://www.instagram.com/_u/privalochka_m" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>129.</strong> @k.kemilisss</span>
+            <a href="https://www.instagram.com/_u/k.kemilisss" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>130.</strong> @adriana.yakovleva</span>
+            <a href="https://www.instagram.com/_u/adriana.yakovleva" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>131.</strong> @vasiliiik_</span>
+            <a href="https://www.instagram.com/_u/vasiliiik_" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>132.</strong> @blacktarohell</span>
+            <a href="https://www.instagram.com/_u/blacktarohell" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>133.</strong> @kulikova01</span>
+            <a href="https://www.instagram.com/_u/kulikova01" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>134.</strong> @anna_yasiulevich24</span>
+            <a href="https://www.instagram.com/_u/anna_yasiulevich24" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>135.</strong> @yulia.purpur</span>
+            <a href="https://www.instagram.com/_u/yulia.purpur" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>136.</strong> @elen.yuzhikova</span>
+            <a href="https://www.instagram.com/_u/elen.yuzhikova" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>137.</strong> @evkamalina</span>
+            <a href="https://www.instagram.com/_u/evkamalina" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>138.</strong> @neurograph_mikheeva</span>
+            <a href="https://www.instagram.com/_u/neurograph_mikheeva" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>139.</strong> @solovyshka.ly</span>
+            <a href="https://www.instagram.com/_u/solovyshka.ly" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>140.</strong> @__deleted__bhiebeagaddcfbdcc</span>
+            <a href="https://www.instagram.com/_u/__deleted__bhiebeagaddcfbdcc" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>141.</strong> @stanovvaya</span>
+            <a href="https://www.instagram.com/_u/stanovvaya" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+        <div class="user-item">
+            <span><strong>142.</strong> @lisa_hkkk</span>
+            <a href="https://www.instagram.com/_u/lisa_hkkk" 
+               target="_blank" 
+               class="profile-link">
+                Открыть профиль
+            </a>
+        </div>
+    
+    
+    <script>
+        function copyAllLinks() {
+            const links = [
+                "https://www.instagram.com/_u/angeliina_rokes",\n                "https://www.instagram.com/_u/anna_boldyy",\n                "https://www.instagram.com/_u/books_lisss",\n                "https://www.instagram.com/_u/romanova___mari",\n                "https://www.instagram.com/_u/khamidovanz",\n                "https://www.instagram.com/_u/angelliice",\n                "https://www.instagram.com/_u/aly.vinaaa",\n                "https://www.instagram.com/_u/quin.star21",\n                "https://www.instagram.com/_u/ezik_mari",\n                "https://www.instagram.com/_u/marrgulichka",\n                "https://www.instagram.com/_u/valeriya_kek_art",\n                "https://www.instagram.com/_u/yan4ik_baldina",\n                "https://www.instagram.com/_u/irishadovgaliuk",\n                "https://www.instagram.com/_u/polyakova_ann_",\n                "https://www.instagram.com/_u/nails_bro_spb",\n                "https://www.instagram.com/_u/aniuta9596",\n                "https://www.instagram.com/_u/shkavrova_",\n                "https://www.instagram.com/_u/veronika__universe",\n                "https://www.instagram.com/_u/teterina0811",\n                "https://www.instagram.com/_u/lenormanistka",\n                "https://www.instagram.com/_u/keratina_alevtina",\n                "https://www.instagram.com/_u/rashitova.ju",\n                "https://www.instagram.com/_u/aisylu__photo",\n                "https://www.instagram.com/_u/dszhka",\n                "https://www.instagram.com/_u/nadiivleva",\n                "https://www.instagram.com/_u/photo_lilith_",\n                "https://www.instagram.com/_u/lenaa.sergeevna",\n                "https://www.instagram.com/_u/sidelnikova91",\n                "https://www.instagram.com/_u/alieva261023",\n                "https://www.instagram.com/_u/zvani_zavtrak",\n                "https://www.instagram.com/_u/julia2604ru",\n                "https://www.instagram.com/_u/nastya_mirari",\n                "https://www.instagram.com/_u/ekaterina_karanadze",\n                "https://www.instagram.com/_u/chernoskutovatb",\n                "https://www.instagram.com/_u/miiamur01",\n                "https://www.instagram.com/_u/lina_.vak",\n                "https://www.instagram.com/_u/dasha_vavi_lova",\n                "https://www.instagram.com/_u/gveraone",\n                "https://www.instagram.com/_u/nastya___stylist",\n                "https://www.instagram.com/_u/shrbn_f",\n                "https://www.instagram.com/_u/angelinnix",\n                "https://www.instagram.com/_u/pavllorya.desserts",\n                "https://www.instagram.com/_u/tam.000001",\n                "https://www.instagram.com/_u/_s_kseniya_v",\n                "https://www.instagram.com/_u/anna__lovemakeup",\n                "https://www.instagram.com/_u/darya.bersenevva",\n                "https://www.instagram.com/_u/sivakova.1317",\n                "https://www.instagram.com/_u/djulies.blog",\n                "https://www.instagram.com/_u/gubina.ss",\n                "https://www.instagram.com/_u/dominika_pavlovna",\n                "https://www.instagram.com/_u/karinessa__2206",\n                "https://www.instagram.com/_u/men_vipshoping_26",\n                "https://www.instagram.com/_u/danniiiiele",\n                "https://www.instagram.com/_u/strangervinyyl",\n                "https://www.instagram.com/_u/dasha_lisovenko",\n                "https://www.instagram.com/_u/yuli.and.slav",\n                "https://www.instagram.com/_u/ai_gromova",\n                "https://www.instagram.com/_u/nelmua_",\n                "https://www.instagram.com/_u/vvv.emelyanova",\n                "https://www.instagram.com/_u/n.y.u.t.s",\n                "https://www.instagram.com/_u/belaayyaa",\n                "https://www.instagram.com/_u/lenara.wow",\n                "https://www.instagram.com/_u/levnkova",\n                "https://www.instagram.com/_u/mari_korotovskih",\n                "https://www.instagram.com/_u/yulia_sivaya",\n                "https://www.instagram.com/_u/elstolba",\n                "https://www.instagram.com/_u/_lidos__",\n                "https://www.instagram.com/_u/smirnovshina00",\n                "https://www.instagram.com/_u/plusekontent",\n                "https://www.instagram.com/_u/melomanka_mi",\n                "https://www.instagram.com/_u/dari_pole_dance",\n                "https://www.instagram.com/_u/nk_kochetkova",\n                "https://www.instagram.com/_u/galinaoffix",\n                "https://www.instagram.com/_u/reviving_rose2304",\n                "https://www.instagram.com/_u/koliiis_s",\n                "https://www.instagram.com/_u/daria_dalakyan999",\n                "https://www.instagram.com/_u/wow_decor_krd",\n                "https://www.instagram.com/_u/avv.roni",\n                "https://www.instagram.com/_u/pronko.psy",\n                "https://www.instagram.com/_u/keti_mmm",\n                "https://www.instagram.com/_u/alikova_permanent",\n                "https://www.instagram.com/_u/svetlana_dutchak_",\n                "https://www.instagram.com/_u/tvoytarologiny",\n                "https://www.instagram.com/_u/diya__dii",\n                "https://www.instagram.com/_u/elena_k07",\n                "https://www.instagram.com/_u/sanechka.s_",\n                "https://www.instagram.com/_u/yuliaa_kn",\n                "https://www.instagram.com/_u/regina_kovrigina",\n                "https://www.instagram.com/_u/ayshe_ka777",\n                "https://www.instagram.com/_u/krisblog_i",\n                "https://www.instagram.com/_u/anastasiabrotko",\n                "https://www.instagram.com/_u/cool_3tarot",\n                "https://www.instagram.com/_u/polia.belia",\n                "https://www.instagram.com/_u/eliavino",\n                "https://www.instagram.com/_u/psihologiya.deneg",\n                "https://www.instagram.com/_u/svi.kk",\n                "https://www.instagram.com/_u/alineesssa",\n                "https://www.instagram.com/_u/viuggova",\n                "https://www.instagram.com/_u/lera._brows",\n                "https://www.instagram.com/_u/slav_a2614",\n                "https://www.instagram.com/_u/riadeair",\n                "https://www.instagram.com/_u/__frolova.d__",\n                "https://www.instagram.com/_u/poypae.e",\n                "https://www.instagram.com/_u/nosovpartner",\n                "https://www.instagram.com/_u/olesia.pohabova",\n                "https://www.instagram.com/_u/make_me_cry001",\n                "https://www.instagram.com/_u/stasy.taro_",\n                "https://www.instagram.com/_u/fotomusicbox",\n                "https://www.instagram.com/_u/german_barukh",\n                "https://www.instagram.com/_u/_mitroshaa_",\n                "https://www.instagram.com/_u/veralilas_game",\n                "https://www.instagram.com/_u/mednaya_babochka",\n                "https://www.instagram.com/_u/amaliya12341",\n                "https://www.instagram.com/_u/katea.sinitsa",\n                "https://www.instagram.com/_u/11alissaaa11",\n                "https://www.instagram.com/_u/la_room_rnd",\n                "https://www.instagram.com/_u/patimat.izaeva",\n                "https://www.instagram.com/_u/tarolog.dar",\n                "https://www.instagram.com/_u/ismillona",\n                "https://www.instagram.com/_u/artukova_28__",\n                "https://www.instagram.com/_u/prom.ts6",\n                "https://www.instagram.com/_u/letta_22.12",\n                "https://www.instagram.com/_u/pershina13",\n                "https://www.instagram.com/_u/fitmamaspain",\n                "https://www.instagram.com/_u/yavorskaya_v_",\n                "https://www.instagram.com/_u/matrix22mari",\n                "https://www.instagram.com/_u/_little__lark__",\n                "https://www.instagram.com/_u/privalochka_m",\n                "https://www.instagram.com/_u/k.kemilisss",\n                "https://www.instagram.com/_u/adriana.yakovleva",\n                "https://www.instagram.com/_u/vasiliiik_",\n                "https://www.instagram.com/_u/blacktarohell",\n                "https://www.instagram.com/_u/kulikova01",\n                "https://www.instagram.com/_u/anna_yasiulevich24",\n                "https://www.instagram.com/_u/yulia.purpur",\n                "https://www.instagram.com/_u/elen.yuzhikova",\n                "https://www.instagram.com/_u/evkamalina",\n                "https://www.instagram.com/_u/neurograph_mikheeva",\n                "https://www.instagram.com/_u/solovyshka.ly",\n                "https://www.instagram.com/_u/__deleted__bhiebeagaddcfbdcc",\n                "https://www.instagram.com/_u/stanovvaya",\n                "https://www.instagram.com/_u/lisa_hkkk"
+            ].join('\n');
+            
+            navigator.clipboard.writeText(links)
+                .then(() => alert('Все ссылки скопированы!'))
+                .catch(err => console.error('Ошибка копирования:', err));
+        }
+    </script>
+</body>
+</html>

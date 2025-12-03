@@ -4,4 +4,6 @@ node_modules
 test.zip
 test_results.json
 non_mutual_following.json
-
+non_mutual_compact.html
+non_mutual_detailed.json
+non_mutual_report.html

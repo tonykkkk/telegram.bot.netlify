@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram: Не взаимные подписки (142)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h1 .count-badge {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+        
+        .stat-card h3 {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .user-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+            .username {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .profile-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .profile-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .timestamp {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+        }
+        
+        .no-users {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+        }
+        
+        .search-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .users-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+            
+            .stat-card {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .users-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <span>Instagram: Не взаимные подписки</span>
+                <span class="count-badge">142</span>
+            </h1>
+            <p style="color: #666; margin-top: 10px;">
+                Эти пользователи не подписаны на вас в ответ
+            </p>
+            
+            <div class="search-bar">
+                <input type="text" 
+                       class="search-input" 
+                       placeholder="Поиск по имени пользователя..." 
+                       id="searchInput" onkeyup="searchUsers()">
+                <button class="search-btn" onclick="searchUsers()">Поиск</button>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="sortByUsername()">Сортировать по имени</button>
+                <button class="control-btn" onclick="sortByDate()">Сортировать по дате</button>
+                <button class="control-btn" onclick="showAll()">Показать всех</button>
+                <button class="control-btn" onclick="copyAllLinks()">Копировать все ссылки</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Всего пользователей</h3>
+                    <p>142</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Дата анализа</h3>
+                    <p>03.12.2025, 15:39:28</p>
+                </div>
+            </div>
+        </div>
+        
+        
+    <div class="users-grid" id="usersGrid">
+        
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@angeliina_rokes</div>
+        
+        <a href="https://www.instagram.com/_u/angeliina_rokes" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@anna_boldyy</div>
+        
+        <a href="https://www.instagram.com/_u/anna_boldyy" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">B</div>
+        <div class="username">@books_lisss</div>
+        
+        <a href="https://www.instagram.com/_u/books_lisss" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">R</div>
+        <div class="username">@romanova___mari</div>
+        
+        <a href="https://www.instagram.com/_u/romanova___mari" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@khamidovanz</div>
+        
+        <a href="https://www.instagram.com/_u/khamidovanz" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@angelliice</div>
+        
+        <a href="https://www.instagram.com/_u/angelliice" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@aly.vinaaa</div>
+        
+        <a href="https://www.instagram.com/_u/aly.vinaaa" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Q</div>
+        <div class="username">@quin.star21</div>
+        
+        <a href="https://www.instagram.com/_u/quin.star21" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@ezik_mari</div>
+        
+        <a href="https://www.instagram.com/_u/ezik_mari" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@marrgulichka</div>
+        
+        <a href="https://www.instagram.com/_u/marrgulichka" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@valeriya_kek_art</div>
+        
+        <a href="https://www.instagram.com/_u/valeriya_kek_art" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yan4ik_baldina</div>
+        
+        <a href="https://www.instagram.com/_u/yan4ik_baldina" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">I</div>
+        <div class="username">@irishadovgaliuk</div>
+        
+        <a href="https://www.instagram.com/_u/irishadovgaliuk" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@polyakova_ann_</div>
+        
+        <a href="https://www.instagram.com/_u/polyakova_ann_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nails_bro_spb</div>
+        
+        <a href="https://www.instagram.com/_u/nails_bro_spb" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@aniuta9596</div>
+        
+        <a href="https://www.instagram.com/_u/aniuta9596" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@shkavrova_</div>
+        
+        <a href="https://www.instagram.com/_u/shkavrova_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@veronika__universe</div>
+        
+        <a href="https://www.instagram.com/_u/veronika__universe" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">T</div>
+        <div class="username">@teterina0811</div>
+        
+        <a href="https://www.instagram.com/_u/teterina0811" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lenormanistka</div>
+        
+        <a href="https://www.instagram.com/_u/lenormanistka" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@keratina_alevtina</div>
+        
+        <a href="https://www.instagram.com/_u/keratina_alevtina" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">R</div>
+        <div class="username">@rashitova.ju</div>
+        
+        <a href="https://www.instagram.com/_u/rashitova.ju" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@aisylu__photo</div>
+        
+        <a href="https://www.instagram.com/_u/aisylu__photo" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@dszhka</div>
+        
+        <a href="https://www.instagram.com/_u/dszhka" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nadiivleva</div>
+        
+        <a href="https://www.instagram.com/_u/nadiivleva" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@photo_lilith_</div>
+        
+        <a href="https://www.instagram.com/_u/photo_lilith_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lenaa.sergeevna</div>
+        
+        <a href="https://www.instagram.com/_u/lenaa.sergeevna" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@sidelnikova91</div>
+        
+        <a href="https://www.instagram.com/_u/sidelnikova91" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@alieva261023</div>
+        
+        <a href="https://www.instagram.com/_u/alieva261023" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Z</div>
+        <div class="username">@zvani_zavtrak</div>
+        
+        <a href="https://www.instagram.com/_u/zvani_zavtrak" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">J</div>
+        <div class="username">@julia2604ru</div>
+        
+        <a href="https://www.instagram.com/_u/julia2604ru" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nastya_mirari</div>
+        
+        <a href="https://www.instagram.com/_u/nastya_mirari" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@ekaterina_karanadze</div>
+        
+        <a href="https://www.instagram.com/_u/ekaterina_karanadze" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">C</div>
+        <div class="username">@chernoskutovatb</div>
+        
+        <a href="https://www.instagram.com/_u/chernoskutovatb" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@miiamur01</div>
+        
+        <a href="https://www.instagram.com/_u/miiamur01" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lina_.vak</div>
+        
+        <a href="https://www.instagram.com/_u/lina_.vak" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@dasha_vavi_lova</div>
+        
+        <a href="https://www.instagram.com/_u/dasha_vavi_lova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">G</div>
+        <div class="username">@gveraone</div>
+        
+        <a href="https://www.instagram.com/_u/gveraone" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nastya___stylist</div>
+        
+        <a href="https://www.instagram.com/_u/nastya___stylist" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@shrbn_f</div>
+        
+        <a href="https://www.instagram.com/_u/shrbn_f" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@angelinnix</div>
+        
+        <a href="https://www.instagram.com/_u/angelinnix" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@pavllorya.desserts</div>
+        
+        <a href="https://www.instagram.com/_u/pavllorya.desserts" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">T</div>
+        <div class="username">@tam.000001</div>
+        
+        <a href="https://www.instagram.com/_u/tam.000001" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@_s_kseniya_v</div>
+        
+        <a href="https://www.instagram.com/_u/_s_kseniya_v" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@anna__lovemakeup</div>
+        
+        <a href="https://www.instagram.com/_u/anna__lovemakeup" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@darya.bersenevva</div>
+        
+        <a href="https://www.instagram.com/_u/darya.bersenevva" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@sivakova.1317</div>
+        
+        <a href="https://www.instagram.com/_u/sivakova.1317" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@djulies.blog</div>
+        
+        <a href="https://www.instagram.com/_u/djulies.blog" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">G</div>
+        <div class="username">@gubina.ss</div>
+        
+        <a href="https://www.instagram.com/_u/gubina.ss" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@dominika_pavlovna</div>
+        
+        <a href="https://www.instagram.com/_u/dominika_pavlovna" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@karinessa__2206</div>
+        
+        <a href="https://www.instagram.com/_u/karinessa__2206" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@men_vipshoping_26</div>
+        
+        <a href="https://www.instagram.com/_u/men_vipshoping_26" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@danniiiiele</div>
+        
+        <a href="https://www.instagram.com/_u/danniiiiele" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@strangervinyyl</div>
+        
+        <a href="https://www.instagram.com/_u/strangervinyyl" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@dasha_lisovenko</div>
+        
+        <a href="https://www.instagram.com/_u/dasha_lisovenko" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yuli.and.slav</div>
+        
+        <a href="https://www.instagram.com/_u/yuli.and.slav" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@ai_gromova</div>
+        
+        <a href="https://www.instagram.com/_u/ai_gromova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nelmua_</div>
+        
+        <a href="https://www.instagram.com/_u/nelmua_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@vvv.emelyanova</div>
+        
+        <a href="https://www.instagram.com/_u/vvv.emelyanova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@n.y.u.t.s</div>
+        
+        <a href="https://www.instagram.com/_u/n.y.u.t.s" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">B</div>
+        <div class="username">@belaayyaa</div>
+        
+        <a href="https://www.instagram.com/_u/belaayyaa" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lenara.wow</div>
+        
+        <a href="https://www.instagram.com/_u/lenara.wow" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@levnkova</div>
+        
+        <a href="https://www.instagram.com/_u/levnkova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@mari_korotovskih</div>
+        
+        <a href="https://www.instagram.com/_u/mari_korotovskih" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yulia_sivaya</div>
+        
+        <a href="https://www.instagram.com/_u/yulia_sivaya" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@elstolba</div>
+        
+        <a href="https://www.instagram.com/_u/elstolba" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@_lidos__</div>
+        
+        <a href="https://www.instagram.com/_u/_lidos__" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@smirnovshina00</div>
+        
+        <a href="https://www.instagram.com/_u/smirnovshina00" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@plusekontent</div>
+        
+        <a href="https://www.instagram.com/_u/plusekontent" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@melomanka_mi</div>
+        
+        <a href="https://www.instagram.com/_u/melomanka_mi" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@dari_pole_dance</div>
+        
+        <a href="https://www.instagram.com/_u/dari_pole_dance" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nk_kochetkova</div>
+        
+        <a href="https://www.instagram.com/_u/nk_kochetkova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">G</div>
+        <div class="username">@galinaoffix</div>
+        
+        <a href="https://www.instagram.com/_u/galinaoffix" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">R</div>
+        <div class="username">@reviving_rose2304</div>
+        
+        <a href="https://www.instagram.com/_u/reviving_rose2304" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@koliiis_s</div>
+        
+        <a href="https://www.instagram.com/_u/koliiis_s" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@daria_dalakyan999</div>
+        
+        <a href="https://www.instagram.com/_u/daria_dalakyan999" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">W</div>
+        <div class="username">@wow_decor_krd</div>
+        
+        <a href="https://www.instagram.com/_u/wow_decor_krd" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@avv.roni</div>
+        
+        <a href="https://www.instagram.com/_u/avv.roni" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@pronko.psy</div>
+        
+        <a href="https://www.instagram.com/_u/pronko.psy" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@keti_mmm</div>
+        
+        <a href="https://www.instagram.com/_u/keti_mmm" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@alikova_permanent</div>
+        
+        <a href="https://www.instagram.com/_u/alikova_permanent" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@svetlana_dutchak_</div>
+        
+        <a href="https://www.instagram.com/_u/svetlana_dutchak_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">T</div>
+        <div class="username">@tvoytarologiny</div>
+        
+        <a href="https://www.instagram.com/_u/tvoytarologiny" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">D</div>
+        <div class="username">@diya__dii</div>
+        
+        <a href="https://www.instagram.com/_u/diya__dii" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@elena_k07</div>
+        
+        <a href="https://www.instagram.com/_u/elena_k07" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@sanechka.s_</div>
+        
+        <a href="https://www.instagram.com/_u/sanechka.s_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yuliaa_kn</div>
+        
+        <a href="https://www.instagram.com/_u/yuliaa_kn" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">R</div>
+        <div class="username">@regina_kovrigina</div>
+        
+        <a href="https://www.instagram.com/_u/regina_kovrigina" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@ayshe_ka777</div>
+        
+        <a href="https://www.instagram.com/_u/ayshe_ka777" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@krisblog_i</div>
+        
+        <a href="https://www.instagram.com/_u/krisblog_i" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@anastasiabrotko</div>
+        
+        <a href="https://www.instagram.com/_u/anastasiabrotko" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">C</div>
+        <div class="username">@cool_3tarot</div>
+        
+        <a href="https://www.instagram.com/_u/cool_3tarot" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@polia.belia</div>
+        
+        <a href="https://www.instagram.com/_u/polia.belia" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@eliavino</div>
+        
+        <a href="https://www.instagram.com/_u/eliavino" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@psihologiya.deneg</div>
+        
+        <a href="https://www.instagram.com/_u/psihologiya.deneg" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@svi.kk</div>
+        
+        <a href="https://www.instagram.com/_u/svi.kk" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@alineesssa</div>
+        
+        <a href="https://www.instagram.com/_u/alineesssa" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@viuggova</div>
+        
+        <a href="https://www.instagram.com/_u/viuggova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lera._brows</div>
+        
+        <a href="https://www.instagram.com/_u/lera._brows" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@slav_a2614</div>
+        
+        <a href="https://www.instagram.com/_u/slav_a2614" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">R</div>
+        <div class="username">@riadeair</div>
+        
+        <a href="https://www.instagram.com/_u/riadeair" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@__frolova.d__</div>
+        
+        <a href="https://www.instagram.com/_u/__frolova.d__" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@poypae.e</div>
+        
+        <a href="https://www.instagram.com/_u/poypae.e" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@nosovpartner</div>
+        
+        <a href="https://www.instagram.com/_u/nosovpartner" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">O</div>
+        <div class="username">@olesia.pohabova</div>
+        
+        <a href="https://www.instagram.com/_u/olesia.pohabova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@make_me_cry001</div>
+        
+        <a href="https://www.instagram.com/_u/make_me_cry001" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@stasy.taro_</div>
+        
+        <a href="https://www.instagram.com/_u/stasy.taro_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">F</div>
+        <div class="username">@fotomusicbox</div>
+        
+        <a href="https://www.instagram.com/_u/fotomusicbox" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">G</div>
+        <div class="username">@german_barukh</div>
+        
+        <a href="https://www.instagram.com/_u/german_barukh" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@_mitroshaa_</div>
+        
+        <a href="https://www.instagram.com/_u/_mitroshaa_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@veralilas_game</div>
+        
+        <a href="https://www.instagram.com/_u/veralilas_game" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@mednaya_babochka</div>
+        
+        <a href="https://www.instagram.com/_u/mednaya_babochka" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@amaliya12341</div>
+        
+        <a href="https://www.instagram.com/_u/amaliya12341" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@katea.sinitsa</div>
+        
+        <a href="https://www.instagram.com/_u/katea.sinitsa" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">1</div>
+        <div class="username">@11alissaaa11</div>
+        
+        <a href="https://www.instagram.com/_u/11alissaaa11" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@la_room_rnd</div>
+        
+        <a href="https://www.instagram.com/_u/la_room_rnd" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@patimat.izaeva</div>
+        
+        <a href="https://www.instagram.com/_u/patimat.izaeva" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">T</div>
+        <div class="username">@tarolog.dar</div>
+        
+        <a href="https://www.instagram.com/_u/tarolog.dar" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">I</div>
+        <div class="username">@ismillona</div>
+        
+        <a href="https://www.instagram.com/_u/ismillona" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@artukova_28__</div>
+        
+        <a href="https://www.instagram.com/_u/artukova_28__" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@prom.ts6</div>
+        
+        <a href="https://www.instagram.com/_u/prom.ts6" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@letta_22.12</div>
+        
+        <a href="https://www.instagram.com/_u/letta_22.12" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@pershina13</div>
+        
+        <a href="https://www.instagram.com/_u/pershina13" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">F</div>
+        <div class="username">@fitmamaspain</div>
+        
+        <a href="https://www.instagram.com/_u/fitmamaspain" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yavorskaya_v_</div>
+        
+        <a href="https://www.instagram.com/_u/yavorskaya_v_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">M</div>
+        <div class="username">@matrix22mari</div>
+        
+        <a href="https://www.instagram.com/_u/matrix22mari" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@_little__lark__</div>
+        
+        <a href="https://www.instagram.com/_u/_little__lark__" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">P</div>
+        <div class="username">@privalochka_m</div>
+        
+        <a href="https://www.instagram.com/_u/privalochka_m" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@k.kemilisss</div>
+        
+        <a href="https://www.instagram.com/_u/k.kemilisss" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@adriana.yakovleva</div>
+        
+        <a href="https://www.instagram.com/_u/adriana.yakovleva" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">V</div>
+        <div class="username">@vasiliiik_</div>
+        
+        <a href="https://www.instagram.com/_u/vasiliiik_" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">B</div>
+        <div class="username">@blacktarohell</div>
+        
+        <a href="https://www.instagram.com/_u/blacktarohell" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">K</div>
+        <div class="username">@kulikova01</div>
+        
+        <a href="https://www.instagram.com/_u/kulikova01" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">A</div>
+        <div class="username">@anna_yasiulevich24</div>
+        
+        <a href="https://www.instagram.com/_u/anna_yasiulevich24" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">Y</div>
+        <div class="username">@yulia.purpur</div>
+        
+        <a href="https://www.instagram.com/_u/yulia.purpur" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@elen.yuzhikova</div>
+        
+        <a href="https://www.instagram.com/_u/elen.yuzhikova" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">E</div>
+        <div class="username">@evkamalina</div>
+        
+        <a href="https://www.instagram.com/_u/evkamalina" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">N</div>
+        <div class="username">@neurograph_mikheeva</div>
+        
+        <a href="https://www.instagram.com/_u/neurograph_mikheeva" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@solovyshka.ly</div>
+        
+        <a href="https://www.instagram.com/_u/solovyshka.ly" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">_</div>
+        <div class="username">@__deleted__bhiebeagaddcfbdcc</div>
+        
+        <a href="https://www.instagram.com/_u/__deleted__bhiebeagaddcfbdcc" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">S</div>
+        <div class="username">@stanovvaya</div>
+        
+        <a href="https://www.instagram.com/_u/stanovvaya" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    <div class="user-card" data-timestamp="0">
+        <div class="avatar">L</div>
+        <div class="username">@lisa_hkkk</div>
+        
+        <a href="https://www.instagram.com/_u/lisa_hkkk" 
+           target="_blank" 
+           class="profile-btn" 
+           title="Открыть профиль в Instagram">
+            Перейти в профиль
+        </a>
+    </div>
+  
+    </div>
+  
+    </div>
+    
+    <div class="footer">
+        <p>Сгенерировано 03.12.2025, 15:39:28 • Instagram Analyzer</p>
+    </div>
+    
+    <script>
+        // JavaScript функции для интерактивности
+        function searchUsers() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.user-card');
+            
+            cards.forEach(card => {
+                const username = card.querySelector('.username').textContent.toLowerCase();
+                if (username.includes(filter)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function sortByUsername() {
+            const container = document.querySelector('.users-grid');
+            const cards = Array.from(container.querySelectorAll('.user-card'));
+            
+            cards.sort((a, b) => {
+                const nameA = a.querySelector('.username').textContent.toLowerCase();
+                const nameB = b.querySelector('.username').textContent.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+            
+            cards.forEach(card => container.appendChild(card));
+        }
+        
+        function sortByDate() {
+            const container = document.querySelector('.users-grid');
+            const cards = Array.from(container.querySelectorAll('.user-card'));
+            
+            cards.sort((a, b) => {
+                const dateA = a.dataset.timestamp || '0';
+                const dateB = b.dataset.timestamp || '0';
+                return parseInt(dateB) - parseInt(dateA);
+            });
+            
+            cards.forEach(card => container.appendChild(card));
+        }
+        
+        function showAll() {
+            const cards = document.querySelectorAll('.user-card');
+            cards.forEach(card => {
+                card.style.display = 'flex';
+            });
+            document.getElementById('searchInput').value = '';
+        }
+        
+        function copyAllLinks() {
+            const links = Array.from(document.querySelectorAll('.profile-btn'))
+                .map(btn => btn.href)
+                .join('\n');
+            
+            navigator.clipboard.writeText(links)
+                .then(() => alert('Все ссылки скопированы в буфер обмена!'))
+                .catch(err => alert('Ошибка копирования: ' + err));
+        }
+        
+        // Автоматическое открытие профиля в новой вкладке
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('profile-btn')) {
+                e.preventDefault();
+                const url = e.target.href;
+                window.open(url, '_blank');
+            }
+        });
+        // Инициализация поиска при загрузке
+        document.getElementById('searchInput').focus();
+    </script>
+</body>
+</html>

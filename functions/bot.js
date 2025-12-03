@@ -30,9 +30,9 @@ bot.on("document", async (ctx) => {
 
     const result = await extractFollowersAndFollowing(zipBuffer);
 
-    ctx.reply(`✅ Данные успешно извлечены:`);
-    ctx.reply(`   - Подписчики: ${result.followers?.length || 0} записей`);
-    ctx.reply(`   - Подписки: ${result.following?.length || 0} записей`);
+    //ctx.reply(`✅ Данные успешно извлечены:`);
+    //ctx.reply(`   - Подписчики: ${result.followers?.length || 0} записей`);
+    //ctx.reply(`   - Подписки: ${result.following?.length || 0} записей`);
     await fullAnalysis(result, ctx);
     // await ctx.reply(
     //   "Прочел твой файл корректно, он начинатеся с текста:\n\n" +
@@ -62,8 +62,6 @@ exports.handler = async (event) => {
 };
 
 async function fullAnalysis(extractedData, ctx) {
-  ctx.reply("🔍 Тест 3: Анализ и сравнение данных");
-
   if (!extractedData.followers || !extractedData.following) {
     ctx.reply("⚠️  Нет данных для анализа");
     return;
@@ -75,7 +73,7 @@ async function fullAnalysis(extractedData, ctx) {
       extractedData.following
     );
 
-    ctx.reply(`✅ Анализ завершен:`);
+    ctx.reply(`✅ Анализ завершен.`);
     ctx.reply(`   - Всего подписчиков: ${extractedData.followers.length}`);
     ctx.reply(`   - Всего подписок: ${extractedData.following.length}`);
     ctx.reply(`   - Не взаимных подписок: ${nonMutualFollowers.length}`);
@@ -99,11 +97,11 @@ async function fullAnalysis(extractedData, ctx) {
         null,
         2
       );
-
-      const buffer = Buffer.from(output, "utf8");
+      htmlContent = createCompactHtmlReportForSend(nonMutualFollowers);
+      const buffer = Buffer.from(htmlContent, "utf8");
       await ctx.replyWithDocument({
         source: buffer,
-        filename: "result.json",
+        filename: "non_mutual_result.html",
         caption: "Не взаимные подписчики",
         parse_mode: "Markdown",
       });
