@@ -19,17 +19,17 @@ bot.on("document", async (ctx) => {
 
     const response = await axios.get(fileUrl);
     await ctx.reply(
-      "I read the file for you! The contents were:\n\n" +
+      "Прочел твой файл корректно, он начинатеся с текста:\n\n" +
         JSON.stringify(response.data).substring(0, 100)
     );
   } catch (error) {
     console.error("Error processing file:", error);
-    await ctx.reply("Sorry, there was an error processing your file.");
+    await ctx.reply("Простите, обработать файл не удалось.");
   }
 });
 
 bot.on("text", (ctx) => {
-  return ctx.reply(`send me file`);
+  return ctx.reply(`Отправь мне файлы`);
 });
 
 exports.handler = async (event) => {
