@@ -33,7 +33,7 @@ bot.on("document", async (ctx) => {
     ctx.reply(`✅ Данные успешно извлечены:`);
     ctx.reply(`   - Подписчики: ${result.followers?.length || 0} записей`);
     ctx.reply(`   - Подписки: ${result.following?.length || 0} записей`);
-    fullAnalysis(result, ctx);
+    await fullAnalysis(result, ctx);
     // await ctx.reply(
     //   "Прочел твой файл корректно, он начинатеся с текста:\n\n" +
     //     JSON.stringify(response.data).substring(0, 100)
@@ -61,7 +61,7 @@ exports.handler = async (event) => {
   }
 };
 
-function fullAnalysis(extractedData, ctx) {
+async function fullAnalysis(extractedData, ctx) {
   ctx.reply("🔍 Тест 3: Анализ и сравнение данных");
 
   if (!extractedData.followers || !extractedData.following) {
@@ -101,7 +101,7 @@ function fullAnalysis(extractedData, ctx) {
       );
 
       const buffer = Buffer.from(output, "utf8");
-      ctx.replyWithDocument({
+      await ctx.replyWithDocument({
         source: buffer,
         filename: "result.json",
         caption: "Не взаимные подписчики",
