@@ -97,7 +97,9 @@ async function fullAnalysis(extractedData, ctx) {
         null,
         2
       );
-      htmlContent = createCompactHtmlReportForSend(nonMutualFollowers);
+      const htmlContent = await createCompactHtmlReportForSend(
+        nonMutualFollowers
+      );
       const buffer = Buffer.from(htmlContent, "utf8");
       await ctx.replyWithDocument({
         source: buffer,
