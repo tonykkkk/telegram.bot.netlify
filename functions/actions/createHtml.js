@@ -565,7 +565,7 @@ async function createCompactHtmlReportForSend(nonMutualFollowers) {
 </html>`;
 
     //await fs.writeFile(outputPath, htmlContent, "utf-8");
-    console.log(`✅ Компактный HTML отчет создан: ${outputPath}`);
+    console.log(`✅ Компактный HTML отчет создан`);
     return htmlContent;
   } catch (error) {
     console.error("❌ Ошибка создания компактного отчета:", error.message);
