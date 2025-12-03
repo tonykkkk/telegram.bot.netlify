@@ -5,7 +5,7 @@ const {
   handleZipFileUpload,
   extractFollowersAndFollowing,
   review,
-} = require("./utilities/instagramAnalyzer");
+} = require("./actions/instagramAnalyzer");
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
