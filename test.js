@@ -5,7 +5,7 @@ const {
   handleZipFileUpload,
   extractFollowersAndFollowing,
   review,
-} = require("./utilities/instagramAnalyzer");
+} = require("./functions/actions/instagramAnalyzer");
 
 // Конфигурация теста
 const TEST_ZIP_PATH = path.join(__dirname, "test.zip");

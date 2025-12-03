@@ -33,7 +33,7 @@ bot.on("document", async (ctx) => {
     ctx.reply(`✅ Данные успешно извлечены:`);
     ctx.reply(`   - Подписчики: ${result.followers?.length || 0} записей`);
     ctx.reply(`   - Подписки: ${result.following?.length || 0} записей`);
-    fullAnalysis(result);
+    fullAnalysis(result, ctx);
     // await ctx.reply(
     //   "Прочел твой файл корректно, он начинатеся с текста:\n\n" +
     //     JSON.stringify(response.data).substring(0, 100)
