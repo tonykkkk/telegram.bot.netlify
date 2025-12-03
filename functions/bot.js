@@ -99,21 +99,30 @@ function fullAnalysis(extractedData, ctx) {
         null,
         2
       );
-      ctx.reply(`\n📊 Первые 10 не взаимных подписок:`);
-      nonMutualFollowers.slice(0, 10).forEach((user, index) => {
-        ctx.reply(`   ${index + 1}. @${user.username} - ${user.href}`);
+
+      const buffer = Buffer.from(output, "utf8");
+      ctx.replyWithDocument({
+        source: buffer,
+        filename: "result.json",
+        caption: "Не взаимные подписчики",
+        parse_mode: "Markdown",
       });
+      //   ctx.reply(`\n📊 Первые 10 не взаимных подписок:`);
+      //   nonMutualFollowers.slice(0, 10).forEach((user, index) => {
+      //     ctx.reply(`   ${index + 1}. @${user.username} - ${user.href}`);
+      //   });
 
-      if (nonMutualFollowers.length > 10) {
-        ctx.reply(
-          `   ... и еще ${nonMutualFollowers.length - 10} пользователей`
-        );
-      }
-    } else {
-      ctx.reply("🎉 Все ваши подписки взаимны!");
+      //   if (nonMutualFollowers.length > 10) {
+      //     ctx.reply(
+      //       `   ... и еще ${nonMutualFollowers.length - 10} пользователей`
+      //     );
+      //   }
+      // } else {
+      //   ctx.reply("🎉 Все ваши подписки взаимны!");
+      // }
+
+      console.log("");
     }
-
-    console.log("");
   } catch (error) {
     ctx.reply(`❌ Ошибка при анализе данных:`, error.message);
     throw error;
