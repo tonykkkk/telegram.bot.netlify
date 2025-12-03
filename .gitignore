@@ -1,3 +1,7 @@
 # Local Netlify folder
 .netlify
 node_modules
+test.zip
+test_results.json
+non_mutual_following.json
+
